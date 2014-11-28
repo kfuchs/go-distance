@@ -1,32 +1,11 @@
 package main
 
 import (
-	"github.com/codegangsta/martini-contrib/render"
-	"github.com/go-martini/martini"
 	"math"
 	"net/http"
 )
 
 func main() {
-	m := martini.Classic()
-	m.Use(render.Renderer())
-
-	m.Get("/distance", getDistance)
-
-	m.Run()
-}
-
-func getDistance(Response render.Render, Request *http.Request) {
-	input := Request.URL.Query()
-	lat1 := input.Get("lat1")
-	lon1 := input.Get("lon1")
-	lat2 := input.Get("lat2")
-	lon2 := input.Get("lon2")
-
-	from := NewCoords(lat1, lon1)
-	to := NewCoords(lat2, lon2)
-	dist := from.Haversine(to)
-	Response.JSON(200, map[string]interface{}{"distance": dist})
 }
 
 type Coords struct {
